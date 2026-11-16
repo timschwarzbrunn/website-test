@@ -1,0 +1,50 @@
+/* ── RESET & BASE ──────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Open Sans', system-ui, sans-serif; color: #2b2d42; overflow-x: hidden; }
+
+:root {
+  /* general */
+  --red:        #ef233c;   /* primary accent / CTA  */
+  --red-dark:   #d90429;   /* hover / dark states   */
+  --red-light:  #e95555;   /* lighter warm red      */
+  --white:      #edf2f4;   /* section backgrounds   */
+  --dark:       #2b2d42;   /* cards / nav / footer  */
+  /* blue palette — water */
+  --water:      #003a70;   /* hero deep             */
+  --water-mid:  #1965a0;   /* hero mid              */
+  --water-surf: #2d82bd;   /* hero surface          */
+  /* neutral accent */
+  --gold:       #8d99ae;   /* secondary / mid tone  */
+}
+
+h1, h2, h3, h4 { font-family: 'Oswald', 'Arial Narrow', Arial, sans-serif; }
+
+/* ── SCROLL REVEAL ──────────────────────────────────── */
+.reveal        { opacity: 0; transform: translateY(40px);  transition: opacity .8s ease, transform .8s ease; }
+.reveal-left   { opacity: 0; transform: translateX(-60px); transition: opacity .8s ease, transform .8s ease; }
+.reveal-right  { opacity: 0; transform: translateX(60px);  transition: opacity .8s ease, transform .8s ease; }
+.reveal.vis, .reveal-left.vis, .reveal-right.vis {
+  opacity: 1; transform: translate(0);
+}
+.delay-1 { transition-delay: .15s; }
+.delay-2 { transition-delay: .30s; }
+.delay-3 { transition-delay: .45s; }
+.delay-4 { transition-delay: .60s; }
+.delay-5 { transition-delay: .75s; }
+.delay-6 { transition-delay: .90s; }
+
+/* ── SECTION SHARED ─────────────────────────────────── */
+.section-wrap { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: .78rem; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--red);
+  margin-bottom: .8rem;
+}
+.section-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.1; }
+.section-divider {
+  width: 48px; height: 4px; background: var(--red); margin: 1.2rem 0 2rem;
+}
+.section-intro { max-width: 720px; font-size: 1.05rem; line-height: 1.7; color: #555; margin-bottom: 2.5rem; }

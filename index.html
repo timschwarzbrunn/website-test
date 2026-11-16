@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanupolo Innsbruck – KPI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/boats.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">K<span>P</span>I</a>
+  <ul class="nav-links">
+    <li><a href="#sport">Der Sport</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#vorstand">Vorstand</a></li>
+    <li><a href="#mitmachen">Mitmachen</a></li>
+  </ul>
+  <div class="nav-burger" id="nav-burger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="water-bg"></div>
+  <div class="water-lines">
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+    <div class="water-line"></div>
+  </div>
+
+  <!-- Animated boats — SVG injected by makeBoatSVG() in the script below -->
+  <div class="hero-boats">
+    <div class="hero-boat hero-boat-1 boat-1"></div>
+    <div class="hero-boat hero-boat-2 boat-2"></div>
+    <div class="hero-boat hero-boat-3 boat-3"></div>
+  </div><!-- /hero-boats -->
+
+  <div class="hero-ball">
+    <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="17" fill="#000000"/>
+      <circle cx="18" cy="18" r="16.9" fill="#FFD600"/>
+      <ellipse cx="18" cy="18" rx="10" ry="17" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="9.9" ry="16.9" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="14.1" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="14" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="5" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="4.9" fill="#FFD600"/>
+    </svg>
+  </div>
+  <div class="hero-ball hero-ball-2">
+    <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="17" fill="#000000"/>
+      <circle cx="18" cy="18" r="16.9" fill="#FFD600"/>
+      <ellipse cx="18" cy="18" rx="10" ry="17" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="9.9" ry="16.9" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="14.1" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="14" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="5" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="4.9" fill="#FFD600"/>
+    </svg>
+  </div>
+  <div class="hero-ball hero-ball-3">
+    <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="17" fill="#000000"/>
+      <circle cx="18" cy="18" r="16.9" fill="#FFD600"/>
+      <ellipse cx="18" cy="18" rx="10" ry="17" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="9.9" ry="16.9" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="14.1" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="14" fill="#004bb5"/>
+      <ellipse cx="18" cy="18" rx="16.7" ry="5" fill="#000000"/>
+      <ellipse cx="18" cy="18" rx="16.6" ry="4.9" fill="#FFD600"/>
+    </svg>
+  </div>
+
+  <div class="hero-bg-text">KPI</div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Willkommen beim</p>
+    <h1 class="hero-title">KANUPOLO<br><span>INNSBRUCK</span></h1>
+    <p class="hero-tagline">Dein Verein für Kanupolo in Innsbruck</p>
+    <a href="#sport" class="hero-cta">Entdecke den Sport</a>
+  </div>
+
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     DER SPORT & DAS SPIEL (unified scrollytelling)
+══════════════════════════════════════════════════ -->
+<section id="sport">
+  <div class="scrolly-outer">
+
+    <!-- Sticky visual column -->
+    <div class="sticky-col">
+      <div class="sticky-panel">
+        <div class="sport-vis-stack">
+
+          <!-- Boat view: steps 1–2 -->
+          <div class="sport-vis sport-vis-boat active">
+            <div class="boat-label-wrap"></div>
+          </div>
+
+          <!-- Field view: steps 3–7 -->
+          <div class="sport-vis sport-vis-field">
+            <svg id="polo-field-svg" viewBox="0 0 540 360" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="waterGrad" cx="50%" cy="50%" r="70%">
+                  <stop offset="0%"   stop-color="#2476b1"/>
+                  <stop offset="100%" stop-color="#003a70"/>
+                </radialGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="2" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+                <marker id="arrowRed" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#ef233c"/>
+                </marker>
+                <marker id="arrowBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                  <polygon points="0 0, 8 3, 0 6" fill="#4893c6"/>
+                </marker>
+              </defs>
+
+              <rect x="20" y="20" width="500" height="320" rx="10" fill="url(#waterGrad)"/>
+              <rect class="sf-border" x="20" y="20" width="500" height="320" rx="10" fill="none" stroke="#fff" stroke-width="3"/>
+
+              <line x1="270" y1="20"  x2="270" y2="340" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="8,6"/>
+
+              <g class="field-el goal-left field-hidden">
+                <rect x="20" y="145" width="30" height="70" rx="2" fill="none" stroke="#edf2f4" stroke-width="3"/>
+                <line x1="20" y1="145" x2="50" y2="145" stroke="#edf2f4" stroke-width="3"/>
+                <line x1="20" y1="215" x2="50" y2="215" stroke="#edf2f4" stroke-width="3"/>
+                <text x="55" y="186" fill="#edf2f4" font-size="9" font-family="Oswald,Arial,sans-serif" letter-spacing="1">TOR</text>
+              </g>
+              <g class="field-el goal-right field-hidden">
+                <rect x="490" y="145" width="30" height="70" rx="2" fill="none" stroke="#edf2f4" stroke-width="3"/>
+                <text x="460" y="186" fill="#edf2f4" font-size="9" font-family="Oswald,Arial,sans-serif" letter-spacing="1" text-anchor="end">TOR</text>
+              </g>
+
+              <g class="field-el team-a field-hidden">
+                <g transform="translate(135,180)">
+                  <g transform="rotate(0)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#ef233c" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">A</text>
+                </g>
+                <g transform="translate(90,105)">
+                  <g transform="rotate(18)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#ef233c" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">A</text>
+                </g>
+                <g transform="translate(90,255)">
+                  <g transform="rotate(-18)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#ef233c" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">A</text>
+                </g>
+                <g transform="translate(190,120)">
+                  <g transform="rotate(12)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#ef233c" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">A</text>
+                </g>
+                <g transform="translate(190,240)">
+                  <g transform="rotate(-12)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#ef233c" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">A</text>
+                </g>
+              </g>
+
+              <g class="field-el team-b field-hidden">
+                <g transform="translate(405,180)">
+                  <g transform="rotate(180)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#1965a0" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">B</text>
+                </g>
+                <g transform="translate(450,105)">
+                  <g transform="rotate(162)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#1965a0" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">B</text>
+                </g>
+                <g transform="translate(450,255)">
+                  <g transform="rotate(198)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#1965a0" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">B</text>
+                </g>
+                <g transform="translate(350,120)">
+                  <g transform="rotate(168)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#1965a0" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">B</text>
+                </g>
+                <g transform="translate(350,240)">
+                  <g transform="rotate(192)"><path class="player-dot" d="M -17,0 Q -13,-8 0,-9 Q 13,-8 17,0 Q 13,8 0,9 Q -13,8 -17,0 Z" fill="#1965a0" stroke="#fff" stroke-width="1.5"/><line x1="-13" y1="0" x2="13" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/></g>
+                  <text text-anchor="middle" dominant-baseline="middle" fill="white" font-size="9" font-family="Oswald,sans-serif">B</text>
+                </g>
+              </g>
+
+              <g class="field-el field-ball field-hidden">
+                <circle cx="270" cy="180" r="11" fill="#edf2f4" stroke="#8d99ae" stroke-width="2" filter="url(#glow)"/>
+                <circle cx="270" cy="180" r="5"  fill="none"    stroke="#8d99ae" stroke-width="1.5"/>
+              </g>
+              <g class="field-el field-arrows field-hidden">
+                <path d="M 148 180 Q 210 155 259 180" fill="none" stroke="#ef233c" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowRed)"/>
+                <path d="M 395 180 Q 335 205 281 180" fill="none" stroke="#4893c6" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrowBlue)"/>
+              </g>
+
+            </svg>
+
+          </div>
+
+        </div><!-- /sport-vis-stack -->
+      </div>
+    </div>
+
+    <!-- Scrollable steps -->
+    <div class="steps-col">
+
+      <div class="sport-step active" data-vis="boat">
+        <span class="section-label">Der Sport</span>
+        <div class="step-num">01</div>
+        <h2 class="step-title">Was ist Kanupolo?</h2>
+        <p class="step-body">
+          Die gängige Beschreibung „Kanupolo ist Handball in Booten" trifft es wohl am besten. Zwei Teams treten auf dem Wasser in Kajaks gegeneinander an und versuchen einen Wasserball im gegnerischen Tor zu versenken. Der Sport verbindet damit Teamgeist, Spieltaktik, Bootsgefühl und Kraft.
+        </p>
+      </div>
+
+      <div class="sport-step" data-vis="boat">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Ausrüstung</h3>
+        <p class="step-body">
+          Kanupolo ist ein Kontaktsport. Um das Verletzungsrisiko zu minimieren, besitzen Kanupolo-Kajaks an Bug und Heck Puffer. Spielerinnen und Spieler tragen außerdem gepolsterte Schwimmwesten und einen Schutzhelm mit Visier. Der Ball darf sowohl mit der Hand als auch dem Paddel gespielt werden.
+        </p>
+      </div>
+
+      <div class="sport-step" data-vis="field" data-field="1">
+        <h3 class="step-title">Das Spielfeld</h3>
+        <p class="step-body">
+          Im Sommer spielen wir auf dem Baggersee und im Winter im Hallenbad. Das Spielfeld ist 35×23 Meter groß und an beiden kurzen Seiten hängt jeweils ein 1x1.5m großes Tor zwei Meter über der Wasseroberfläche, welches mit dem Paddel verteidigt wird.
+        </p>
+      </div>
+
+      <div class="sport-step" data-vis="field" data-field="2">
+        <div class="step-num">05</div>
+        <h3 class="step-title">Spielablauf</h3>
+        <p class="step-body">
+          Jedes Team stellt <span style="color:#fff">fünf Spieler:innen</span> aufs Wasser. Eine Partie besteht aus zwei zehnminütigen Halbzeiten. Körperkontakt ist erlaubt – wer den Ball hat, darf sogar geschubst werden.
+        </p>
+      </div>
+
+      <div class="sport-step" data-vis="field" data-field="4">
+        <h3 class="step-title">Spielziel</h3>
+        <p class="step-body">
+          Das Ziel des Spiels ist möglichst viele Tore zu werfen und das eigene Tor zu verteidigen. Dafür ist sowohl Individual-Können als auch Teamtaktik gefragt.<br><br>Wenn du mehr über den Sport erfahren möchtest und Teil des Teams werden möchtest, schreib uns oder komm zu unseren Trainingszeiten vorbei!
+        </p>
+      </div>
+
+    </div><!-- /steps-col -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     TRAINING
+══════════════════════════════════════════════════ -->
+<section id="training">
+  <div class="section-wrap" style="padding: 0 2rem;">
+    <div class="training-layout">
+
+      <div class="reveal">
+        <span class="section-label">Aktuelle Trainingszeiten</span>
+        <h2 class="section-title">Wann & Wo trainieren wir?</h2>
+        <div class="section-divider"></div>
+        <p class="section-intro">Im Sommer trainieren wir auf dem Baggersee Rossau. Im Winter wechseln wir in die Schwimmhalle des Landessportzentrums Tirol und trainieren zusätzlich Wurftechnik und Kraft in der Sporthalle der Pädagogischen Hochschule.</p>
+      </div>
+
+      <div class="schedule-list">
+
+        <div class="schedule-card reveal delay-1">
+          <div class="sched-day">
+            <div class="sched-day-abbr">SO</div>
+            <div class="sched-day-name">Sonntag</div>
+          </div>
+          <div class="sched-info">
+            <div class="sched-type">Kinder Hallenbadtraining</div>
+            <span class="sched-time">12:00 – 14:30 Uhr</span>
+            <p class="sched-note">Landessportzentrum Tirol</p>
+          </div>
+        </div>
+
+        <div class="schedule-card reveal delay-2">
+          <div class="sched-day">
+            <div class="sched-day-abbr">SO</div>
+            <div class="sched-day-name">Sonntag</div>
+          </div>
+          <div class="sched-info">
+            <div class="sched-type">Erwachsenen Hallenbadtraining</div>
+            <span class="sched-time">14:30 – 17:00 Uhr</span>
+            <p class="sched-note">Landessportzentrum Tirol</p>
+          </div>
+        </div>
+
+        <div class="schedule-card reveal delay-3">
+          <div class="sched-day">
+            <div class="sched-day-abbr">DO</div>
+            <div class="sched-day-name">Donnerstag</div>
+          </div>
+          <div class="sched-info">
+            <div class="sched-type">Wurftechnik- und Krafttraining</div>
+            <span class="sched-time">18:30 – 20:00 Uhr</span>
+            <p class="sched-note">Sporthalle der Pädagogischen Hochschule</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     VORSTAND
+══════════════════════════════════════════════════ -->
+<section id="vorstand">
+  <div class="section-wrap" style="padding: 0 2rem;">
+    <div class="reveal">
+      <span class="section-label">Der Verein</span>
+      <h2 class="section-title">Unser Vorstand</h2>
+      <div class="section-divider"></div>
+      <p style="color:#666; font-size:1.05rem; max-width:560px; line-height:1.7;">
+        Der Vorstand des KPI sorgt dafür, dass alles reibungslos läuft – von der Hallenorganisation bis zur Wettkampfplanung.
+      </p>
+    </div>
+
+    <div class="vorstand-grid">
+
+      <!-- Card 1 -->
+      <div class="vorstand-card reveal delay-1">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e5383b"/>
+                <stop offset="100%" stop-color="#a4161a"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av1)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">MS</text>
+          </svg>
+        </div>
+        <div class="v-role">Obmann</div>
+        <div class="v-name">Markus Steiner</div>
+        <div class="v-since">im Amt seit 2019</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="vorstand-card reveal delay-2">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2476b1"/>
+                <stop offset="100%" stop-color="#003a70"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av2)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">LB</text>
+          </svg>
+        </div>
+        <div class="v-role">Obfrau-Stellvertreterin</div>
+        <div class="v-name">Laura Berger</div>
+        <div class="v-since">im Amt seit 2021</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="vorstand-card reveal delay-3">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#2d82bd"/>
+                <stop offset="100%" stop-color="#0f558f"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av3)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">TH</text>
+          </svg>
+        </div>
+        <div class="v-role">Kassier</div>
+        <div class="v-name">Thomas Huber</div>
+        <div class="v-since">im Amt seit 2020</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="vorstand-card reveal delay-4">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av4" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1965a0"/>
+                <stop offset="100%" stop-color="#003a70"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av4)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">SM</text>
+          </svg>
+        </div>
+        <div class="v-role">Schriftführerin</div>
+        <div class="v-name">Sofia Müller</div>
+        <div class="v-since">im Amt seit 2022</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="vorstand-card reveal delay-5">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av5" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ef2b2b"/>
+                <stop offset="100%" stop-color="#aa0000"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av5)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">MP</text>
+          </svg>
+        </div>
+        <div class="v-role">Sportwart</div>
+        <div class="v-name">Michael Pichler</div>
+        <div class="v-since">im Amt seit 2019</div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="vorstand-card reveal delay-6">
+        <div class="v-avatar">
+          <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="av6" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#4893c6"/>
+                <stop offset="100%" stop-color="#1965a0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="55" cy="55" r="55" fill="url(#av6)"/>
+            <circle cx="55" cy="42" r="18" fill="rgba(255,255,255,.25)"/>
+            <path d="M 10 110 Q 10 75 55 75 Q 100 75 100 110 Z" fill="rgba(255,255,255,.18)"/>
+            <text x="55" y="50" text-anchor="middle" fill="white" font-size="20" font-family="Oswald,Arial,sans-serif" font-weight="700">ET</text>
+          </svg>
+        </div>
+        <div class="v-role">Jugendreferentin</div>
+        <div class="v-name">Eva Tanzer</div>
+        <div class="v-since">im Amt seit 2023</div>
+      </div>
+
+    </div>
+
+    <p class="reveal" style="margin-top:2.5rem; color:#bbb; font-size:.85rem; letter-spacing:1px; text-align:center;">
+      Fotos des Vorstands folgen in Kürze · Platzhalter aktiv
+    </p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     MITMACHEN
+══════════════════════════════════════════════════ -->
+<section id="mitmachen">
+  <div class="hero-bg-text">KPI</div>
+
+  <!-- Mini boats — SVG injected by makeBoatSVG() in the script below -->
+  <div class="cta-boats">
+    <div class="cta-boat-wrap"></div>
+  </div>
+
+  <div style="position:relative; z-index:2;">
+    <span class="section-label" style="color:rgba(255,255,255,.6);">Jetzt einsteigen</span>
+    <h2 class="reveal" style="color:white; font-size:clamp(2rem,5vw,3.5rem);">Werde Teil des Teams!</h2>
+    <p class="reveal delay-1">
+      Egal ob Anfänger oder erfahrene Paddlerin – beim KPI sind alle willkommen. Komm einfach zu einem unserer Trainings, Ausrüstung stellen wir für den Einstieg bereit.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; position:relative;">
+      <a href="mailto:info@kpi-kanupolo.at" class="cta-btn reveal delay-2">
+        Kontakt aufnehmen
+      </a>
+      <a href="#training" class="cta-btn reveal delay-3" style="background:transparent; color:white;">
+        Trainingszeiten ansehen
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">K<span>P</span>I</div>
+  <div class="footer-sep"></div>
+  <div class="footer-links">
+    <a href="#sport">Der Sport</a>
+    <a href="#training">Training</a>
+    <a href="#vorstand">Vorstand</a>
+    <a href="mailto:info@kpi-kanupolo.at">info@kpi-kanupolo.at</a>
+  </div>
+  <div class="footer-sep"></div>
+  <p>
+    Kanupolo Innsbruck (KPI) - 6020 Innsbruck<br>
+    Mitglied des <a href="#">Österreichischen Kanu-Verbandes (OKV)</a>
+  </p>
+  <p style="margin-top:.8rem; font-size:.75rem; opacity:.4;">
+    © 2026 Kanupolo Innsbruck · Alle Angaben ohne Gewähr
+  </p>
+</footer>
+
+
+<script src="js/boats.js?v=2"></script>
+<script src="js/scrolly.js?v=2"></script>
+<script src="js/main.js?v=2"></script>
+
+</body>
+</html>

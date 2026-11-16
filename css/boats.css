@@ -1,0 +1,187 @@
+/* ── HERO BOATS ─────────────────────────────────────── */
+.hero-boats { position: absolute; inset: 0; pointer-events: none; }
+
+.hero-boat {
+  position: absolute;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.5));
+}
+.hero-boat-1 { top: 18%; width: 160px; animation: sailRight 20s linear infinite; }
+.hero-boat-2 { top: 52%; width: 160px; animation: sailLeft  25s linear infinite -4s; }
+.hero-boat-3 { top: 76%; width: 160px; animation: sailRight 17s linear infinite -9s; }
+
+@keyframes sailRight {
+  0%   { left: -15%; opacity: 0; }
+  5%   { opacity: .75; }
+  95%  { opacity: .75; }
+  100% { left: 115%; opacity: 0; }
+}
+@keyframes sailLeft {
+  0%   { left: 115%; opacity: 0; transform: scaleX(-1); }
+  5%   { opacity: .7; }
+  95%  { opacity: .7; }
+  100% { left: -15%; opacity: 0; transform: scaleX(-1); }
+}
+
+/* ── PADDLE ─────────────────────────────────────────── */
+@keyframes paddleStroke {
+  0%,100% { transform: rotate(-38deg); }
+  50%     { transform: rotate(38deg); }
+}
+.paddle-anim {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: paddleStroke 1.3s ease-in-out infinite;
+}
+.boat-1 .paddle-anim { animation-delay: -0.767s; }
+.boat-2 .paddle-anim { animation-delay: -0.399s; }
+.boat-3 .paddle-anim { animation-delay: -0.940s; }
+
+/* ── POLO BALL (hero) ───────────────────────────────── */
+/* All boats are 160px wide. SVG viewBox 0 -40 320 192, scale = 0.5.
+   Bow (Bug) at 305/320*160 = 152.5px from left edge.
+   Cockpit at centre = 80px. Ball halfWidth = 14px.
+
+   Right boats:  ball at bow+2m = translateX(+234px)
+                 throw at ~25px ahead of cockpit = translateX( +91px)   catch dist = 143px
+   Left boats (scaleX-1): bow flips to 7.5px from left edge.
+                 ball at bow+2m = translateX(-102px)
+                 throw at ~25px ahead of cockpit = translateX( +41px)   catch dist = 143px   */
+.hero-ball {
+  position: absolute;
+  top: calc(18% + 72px);
+  z-index: 10;
+  pointer-events: none;
+  width: 28px;
+  animation:
+    sailRight  20s  linear  infinite,
+    throwCatch 3.9s linear  infinite;
+}
+@keyframes throwCatch {
+  /* cycle=3.9s (3×paddle), catch=47% (143px/78px/s=1.83s), throw=53% */
+  0%   { transform: translateX(234px); animation-timing-function: linear; }
+  47%  { transform: translateX(91px);  animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); }
+  100% { transform: translateX(234px); }
+}
+
+/* ball 2: follows hero-boat-2 (sailLeft, 25s, 160px, 62.4px/s) */
+@keyframes sailLeftBall {
+  0%   { left: 115%; opacity: 0; }
+  5%   { opacity: .7; }
+  95%  { opacity: .7; }
+  100% { left: -15%; opacity: 0; }
+}
+@keyframes throwCatchLeft {
+  /* cycle=3.9s (3×paddle), catch=59% (143px/62.4px/s=2.29s), throw=41% */
+  0%   { transform: translateX(-102px); animation-timing-function: linear; }
+  59%  { transform: translateX(41px);   animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); }
+  100% { transform: translateX(-102px); }
+}
+/* ball 3: follows hero-boat-3 (sailRight, 17s, 160px, 91.8px/s) */
+@keyframes throwCatch3 {
+  /* cycle=2.6s (2×paddle), catch=60% (143px/91.8px/s=1.56s), throw=40% */
+  0%   { transform: translateX(234px); animation-timing-function: linear; }
+  60%  { transform: translateX(91px);  animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); }
+  100% { transform: translateX(234px); }
+}
+.hero-ball.hero-ball-2 {
+  top: calc(52% + 72px);
+  animation:
+    sailLeftBall   25s  linear  infinite -4s,
+    throwCatchLeft 3.9s linear  infinite -4s;
+}
+.hero-ball.hero-ball-3 {
+  top: calc(76% + 72px);
+  animation:
+    sailRight   17s  linear  infinite -9s,
+    throwCatch3 2.6s linear  infinite -9s;
+}
+
+/* ── ANNOTATED BOAT (sport section diagram) ─────────── */
+.boat-showcase {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.boat-label-wrap {
+  position: relative; display: inline-block;
+}
+.boat-label-wrap svg { max-width: 100%; filter: drop-shadow(0 12px 30px rgba(0,0,0,.2)); }
+
+.annotation {
+  position: absolute; font-size: .72rem; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--red-dark); font-family: 'Oswald', sans-serif;
+  white-space: nowrap;
+}
+.annotation::before {
+  content: ''; display: block; width: 30px; height: 1px;
+  background: var(--red); margin-bottom: 3px;
+}
+.ann-bumper-f { top: 32%; right: -30%; }
+.ann-bumper-r { top: 32%; left: -28%; }
+.ann-bumper-r::before { margin-left: auto; }
+.ann-paddle   { bottom: -18%; left: 50%; transform: translateX(-50%); text-align: center; }
+.ann-paddle::before { margin: 0 auto 3px; }
+
+/* ── ANNOTATED BOAT (sport section diagram) ─────────── */
+.boat-label-wrap .paddle-anim { animation: none; }
+
+.ann-g { transition: opacity .4s; }
+.ann-g.ann-dim  { opacity: .15; }
+.ann-g.ann-active > text { fill: white; }
+.ann-g.ann-active > line { stroke: rgba(255,255,255,.85); }
+.ann-g.ann-puffer.ann-active > text { fill: #ef233c; }
+.ann-g.ann-puffer.ann-active > line { stroke: #ef233c; }
+.ann-g.ann-ball.ann-active > text   { fill: #FFD600; }
+.ann-g.ann-ball.ann-active > line   { stroke: rgba(255,255,255,.8); }
+
+/* ── CTA BOATS (mitmachen section) ─────────────────── */
+.cta-boats {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 90px; pointer-events: none; overflow: hidden;
+}
+.cta-boat-wrap {
+  position: absolute; bottom: 10px;
+  animation: ctaBoatSail 14s linear infinite;
+}
+.cta-boat-wrap:nth-child(2) { animation-duration: 18s; animation-delay: 5s; }
+@keyframes ctaBoatSail {
+  0%   { left: -10%; opacity: 0; }
+  5%   { opacity: .5; }
+  95%  { opacity: .5; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* ── MOBILE: boat enters tip-first from left via overflow:hidden clip ────────
+   Both start at -50% (fully off-screen even at 320px). No opacity fade-in
+   needed for entry — overflow:hidden on #hero + .hero-boats clips naturally.
+   Duration 11s keeps visual pace ≈ 9s with old -15% start (~58px/s on 390px).
+   Ball fades in at 2% (0.22s); boat tip enters at ~6.6% (0.73s) → ball first.
+   Catch dist: 390×1.65/11 = 58.5px/s × 1.83s ≈ 107px → bow = 91+107 = 198px */
+@media (max-width: 600px) {
+  .hero-boat-1 {
+    animation: sailRightBoatMobile 11s linear infinite;
+  }
+  .hero-ball {
+    animation:
+      sailRightBallMobile 11s  linear infinite,
+      throwCatch          3.9s linear infinite;
+  }
+
+  @keyframes sailRightBoatMobile {
+    0%   { left: -50%; opacity: .75; }
+    93%  { opacity: .75; }
+    100% { left: 115%; opacity: 0; }
+  }
+
+  @keyframes sailRightBallMobile {
+    0%   { left: -50%; opacity: 0; }
+    2%   { opacity: .75; }
+    93%  { opacity: .75; }
+    100% { left: 115%; opacity: 0; }
+  }
+
+  @keyframes throwCatch {
+    0%   { transform: translateX(198px); animation-timing-function: linear; }
+    47%  { transform: translateX(91px);  animation-timing-function: cubic-bezier(0.15, 0.6, 0.3, 1); }
+    100% { transform: translateX(198px); }
+  }
+}
