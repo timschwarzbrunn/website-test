@@ -32,7 +32,7 @@ function applyUnifiedStep(el) {
   if (isField && field !== undefined) applyFieldStep(parseInt(field));
 }
 
-/* Guard against observer firing during nav anchor jumps */
+/* Guard against scroll firing during nav anchor jumps */
 let navJumping = false;
 document.querySelectorAll('nav a').forEach(a => {
   a.addEventListener('click', () => {
@@ -41,18 +41,31 @@ document.querySelectorAll('nav a').forEach(a => {
   });
 });
 
-const sportObs = new IntersectionObserver((entries) => {
-  if (navJumping) return;
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      sportSteps.forEach(s => s.classList.remove('active'));
-      e.target.classList.add('active');
-      applyUnifiedStep(e.target);
-    }
-  });
-}, { threshold: 0.5 });
+let activeStep = null;
 
-sportSteps.forEach(s => sportObs.observe(s));
+function updateActiveStep() {
+  if (navJumping) return;
+  const vh = window.innerHeight;
+  let best     = null;
+  let bestRatio = -Infinity;
+
+  sportSteps.forEach(step => {
+    const rect    = step.getBoundingClientRect();
+    const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+    const ratio   = visible / rect.height;
+    if (ratio > bestRatio) { bestRatio = ratio; best = step; }
+  });
+
+  if (best && best !== activeStep) {
+    sportSteps.forEach(s => s.classList.remove('active'));
+    best.classList.add('active');
+    applyUnifiedStep(best);
+    activeStep = best;
+  }
+}
+
+window.addEventListener('scroll', updateActiveStep, { passive: true });
+updateActiveStep();
 
 applyFieldStep(0);
 if (sportSteps[0]) applyUnifiedStep(sportSteps[0]);
