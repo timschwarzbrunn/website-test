@@ -417,7 +417,7 @@ footer a:hover { color: var(--gold); }
 
 @media (max-width: 600px) {
   #hero .hero-title { font-size: 2.8rem; }
-  .vorstand-grid { grid-template-columns: repeat(2, 1fr); }
+  .vorstand-grid { grid-template-columns: 1fr; }
   .facts-grid    { grid-template-columns: 1fr 1fr; }
   .sticky-col    { height: 38vh; min-height: 200px; }
   #training      { padding: 4rem 1.25rem; }
